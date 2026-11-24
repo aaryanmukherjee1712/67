@@ -2,6 +2,20 @@ const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 
 let score = 0;
+let aiScore = 0;
+
+const keeper = {
+    x: 1120,
+    y: 300,
+    w: 20,
+    h: 100
+};
+
+const enemy = {
+    x: 900,
+    y: 350,
+    size: 30
+};
 
 const player = {
     x: 150,
@@ -79,6 +93,37 @@ function checkGoal() {
 }
 
 function draw() {
+    function updateKeeper() {
+
+    if(ball.y > keeper.y){
+        keeper.y += 2;
+    }
+
+    if(ball.y < keeper.y){
+        keeper.y -= 2;
+    }
+
+}
+
+function updateEnemy() {
+
+    if(ball.x > enemy.x){
+        enemy.x += 1.5;
+    }
+
+    if(ball.x < enemy.x){
+        enemy.x -= 1.5;
+    }
+
+    if(ball.y > enemy.y){
+        enemy.y += 1.5;
+    }
+
+    if(ball.y < enemy.y){
+        enemy.y -= 1.5;
+    }
+
+}
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -119,10 +164,27 @@ function draw() {
         200
     );
 
-    updateBall();
-    checkGoal();
+ updateBall();
+updateKeeper();
+updateEnemy();
+checkGoal();
 
     ctx.fillStyle = "blue";
+    ctx.fillStyle = "black";
+ctx.fillRect(
+    keeper.x,
+    keeper.y,
+    keeper.w,
+    keeper.h
+);
+
+ctx.fillStyle = "red";
+ctx.fillRect(
+    enemy.x,
+    enemy.y,
+    enemy.size,
+    enemy.size
+);
     ctx.fillRect(
         player.x,
         player.y,
