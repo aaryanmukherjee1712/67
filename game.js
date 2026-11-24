@@ -24,6 +24,12 @@ document.addEventListener("keydown", (e) => {
     if (e.key === "ArrowDown") player.y += player.speed;
     if (e.key === "ArrowLeft") player.x -= player.speed;
     if (e.key === "ArrowRight") player.x += player.speed;
+    if (e.code === "Space") {
+
+    ball.vx = 15;
+    ball.vy = 0;
+
+}
 
 });
 
