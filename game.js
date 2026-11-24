@@ -79,6 +79,35 @@ function checkGoal() {
         ball.x > canvas.width - 20 &&
         ball.y > canvas.height / 2 - 100 &&
         ball.y < canvas.height / 2 + 100
+         score++;
+
+        alert("GOAL! Score: " + score);
+
+        ball.x = 600;
+        ball.y = 350;
+
+        ball.vx = 0;
+        ball.vy = 0;
+    }
+
+    if (
+        ball.x < 20 &&
+        ball.y > canvas.height / 2 - 100 &&
+        ball.y < canvas.height / 2 + 100
+    ) {
+
+        aiScore++;
+
+        alert("AI GOAL!");
+
+        ball.x = 600;
+        ball.y = 350;
+
+        ball.vx = 0;
+        ball.vy = 0;
+    }
+
+}
     ) {
 
         score++;
@@ -106,6 +135,19 @@ function draw() {
 }
 
 function updateEnemy() {
+    let dx = ball.x - enemy.x;
+let dy = ball.y - enemy.y;
+
+let distance = Math.sqrt(dx * dx + dy * dy);
+
+if (distance < 40) {
+        ball.vx = -8;
+    ball.vy = (Math.random() - 0.5) * 4;
+
+    ball.vx = -8;
+    ball.vy = (Math.random() - 0.5) * 4;
+
+}
 
     if(ball.x > enemy.x){
         enemy.x += 1.5;
